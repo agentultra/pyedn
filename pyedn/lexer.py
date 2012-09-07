@@ -10,7 +10,7 @@ Token = namedtuple("Token", "text tag position")
 NIL = "NIL"
 
 
-TOKEN_EXPRS = ((r"[ \n\t]+", None),
+TOKEN_EXPRS = ((r"[ \n\t,]+", None),
                (r"nil", NIL),)
 
 
