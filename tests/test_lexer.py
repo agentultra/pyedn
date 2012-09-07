@@ -33,3 +33,28 @@ class TestLexer(unittest.TestCase):
         self.assertEqual(out[0].tag, out[1].tag)
         self.assertEqual(out[0].position, 0)
         self.assertEqual(out[1].position, 4)
+
+    def test_boolean(self):
+        in_string = u"true false"
+        out = lexer.lex(in_string)
+        self.assertTrue(out)
+        self.assertEqual(len(out), 2)
+        self.assertEqual(out[0].text, "true")
+        self.assertEqual(out[1].text, "false")
+        self.assertEqual(out[0].tag, "BOOL")
+
+    def test_string(self):
+        in_string = u"\"foo, bar baz!\""
+        out = lexer.lex(in_string)
+        self.assertTrue(out)
+        self.assertEqual(len(out), 1)
+        self.assertEqual(out[0].text, u"\"foo, bar baz!\"")
+        self.assertEqual(out[0].tag, "STRING")
+
+    def test_escape_characters_in_string(self):
+        in_string = u"\"foo, bar\nbaz!!\""
+        out = lexer.lex(in_string)
+        self.assertTrue(out)
+        self.assertEqual(len(out), 1)
+        self.assertEqual(out[0].text, u"\"foo, bar\nbaz!!\"")
+        self.assertEqual(out[0].tag, "STRING")
