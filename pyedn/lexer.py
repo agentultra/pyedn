@@ -10,12 +10,14 @@ Token = namedtuple("Token", "text tag position")
 NIL = "NIL"
 BOOL = "BOOL"
 STRING = "STRING"
+CHAR = "CHAR"
 
 
 TOKEN_EXPRS = ((r"[ \n\t,]+", None),
                (r"nil", NIL),
                (r"(true|false)", BOOL),
-               (r"\"(?:[^\\\"]+|\\.)*\"", STRING))
+               (r"\"(?:[^\\\"]+|\\.)*\"", STRING),
+               (r"\\[A-Za-z0-9]+", CHAR))
 
 
 def lex(bytes):

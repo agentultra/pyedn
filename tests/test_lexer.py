@@ -58,3 +58,16 @@ class TestLexer(unittest.TestCase):
         self.assertEqual(len(out), 1)
         self.assertEqual(out[0].text, u"\"foo, bar\nbaz!!\"")
         self.assertEqual(out[0].tag, "STRING")
+
+    def test_character(self):
+        in_string = u"\c"
+        out = lexer.lex(in_string)
+        self.assertTrue(out)
+        self.assertEqual(len(out), 1)
+        self.assertEqual(out[0].text, "\c")
+        self.assertEqual(out[0].tag, "CHAR")
+
+    def test_characters(self):
+        in_string = u"\\h \\e \\l \\l \\o \\space \\w \\o \\r \\l \\d"
+        out = lexer.lex(in_string)
+        self.assertEqual(len(out), 11)
