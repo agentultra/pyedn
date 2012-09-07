@@ -14,7 +14,7 @@ VERSION = '0.1'
 URL = ''
 AUTHOR = u'James King'
 AUTHOR_EMAIL = u'james@agentultra.com'
-DESC = "A short description..."
+DESC = "A Python library for marshalling to the edn format"
 
 def read_file(file_name):
     file_path = os.path.join(
